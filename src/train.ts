@@ -1,4 +1,31 @@
+// import { Train } from "@mui/icons-material";
+
 console.log("ts ishga tushti");
+// TASK S
+function missingNumber(arr: number[]): number {
+  arr.sort((a, b) => a - b); 
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] !== i + 1) {
+      return i + 1; 
+    }
+  }
+
+  return arr.length + 1; 
+}
+console.log(missingNumber([1, 2, 3, 4, 5, 7, 9, 6]));
+console.log(missingNumber([2, 3, 1, 5, 6]));
+console.log(missingNumber([1, 0, 3]));
+
+/**
+ Shunday function tuzing, u numberlardan tashkil topgan array qabul qilsin
+va o'sha numberlar orasidagi tushib qolgan sonni topib uni return qilsin.
+
+MASALAN: missingNumber([3, 0, 1]); return 2
+
+Yuqoridagi misolda, berilayotgan sonlar tarkibini tartiblasak
+'2' soni tushib qolgan
+ */
+
 // TASK R
 function calculate(sum: string): number {
   const result = sum.split(" ");
