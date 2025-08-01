@@ -42,7 +42,7 @@ export default function ActiveUsers() {
                                 );
                             })
                         ) : (
-                            <Box className="no-data">New Active Users!</Box>
+                            <Box className="no-data">No Active Users!</Box>
                         )}  
                         </CssVarsProvider>
                     </Stack>
