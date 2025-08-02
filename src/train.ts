@@ -1,4 +1,33 @@
 // import { Train } from "@mui/icons-material";
+
+//task U
+function sumOdds(num: number): number {
+  let count = 0;
+
+  for (let i = 1; i < num; i += 2) {
+    count++;
+  }
+
+  return count;
+}
+
+console.log(sumOdds(9));  
+console.log(sumOdds(11)); 
+
+
+/**
+Shunday function tuzing, uni number parametri bo'lsin.
+Va bu function berilgan parametrgacha, 0'dan boshlab
+oraliqda nechta toq sonlar borligini aniqlab return qilsi.
+
+MASALAN: sumOdds(9) return 4; sumOdds(11) return 5;
+
+Yuqoridagi birinchi misolda, argument sifatida, 9 berilmoqda.
+Va 0'dan boshlab sanaganda 9'gacha 4'ta toq son mavjud. 
+Keyingi namunada ham xuddi shunday xolat takrorlanmoqda.
+
+*/
+
 //task T
 function mergeSortedArrays(arr1: number[], arr2: number[]) {
   const overal = arr1.concat(arr2);
