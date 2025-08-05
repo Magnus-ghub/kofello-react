@@ -34,6 +34,12 @@ export default function HomeNavbar() {
                         <Box  className={"hover-line"}>
                             <NavLink to="/help" activeClassName={"underline"}>Help</NavLink>
                         </Box>
+                        <Box  className={"hover-line"}>
+                            <NavLink to="/help" activeClassName={"underline"}>Help</NavLink>
+                        </Box>
+                        <Box  className={"hover-line"}>
+                            <NavLink to="/shopping" activeClassName={"underline"}>Market</NavLink>
+                        </Box>
                         <Basket />
 
                         {!authMember ? (

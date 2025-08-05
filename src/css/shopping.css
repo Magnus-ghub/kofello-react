@@ -1,0 +1,46 @@
+.shop-page {
+    position: relative;
+    width: 100%;
+    height: auto;
+    background: #f8f8ff;
+}
+
+/** HERO SECTION **/
+.shop-page .hero-section-frame {
+    width: 100%;
+    height: auto;
+    display: flex;
+    background: #4646a3;
+    display: flex;
+    flex-direction: column;
+}
+
+
+
+
+
+/** BRANDS **/
+
+
+
+/** LATEST **/
+
+
+
+/** BANNER **/
+
+
+
+
+/** TEENFAV **/
+
+
+
+
+/** VAUCHER **/
+
+
+
+/** FOOTER **/
+
+

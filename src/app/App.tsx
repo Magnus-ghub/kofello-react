@@ -12,6 +12,8 @@ import "../css/app.css";
 import "../css/navbar.css";
 import "../css/footer.css";
 import  HelpPage  from "./screens/helpPage";
+import Market from "./screens/marketPage/Brands";
+import MarketPage from "./screens/marketPage";
 
 function App() {
   const location = useLocation();
@@ -19,9 +21,12 @@ function App() {
 
 
   return (
-    <> 
+    <>   
         {location.pathname === "/" ? <HomeNavbar /> : <OtherNavbar />}
         <Switch>
+          <Route path="/shopping">
+            <MarketPage />
+          </Route>
           <Route path="/products">
             <ProductsPage />
           </Route>
