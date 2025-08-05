@@ -1,4 +1,30 @@
 // import { Train } from "@mui/icons-material";
+//task V
+function countChars(word: string) {
+  const obj: { [key: string]: number } = {};
+  for (const char of word) {
+    obj[char] = (obj[char] || 0) + 1;
+  }
+  return obj;
+}
+
+console.log(countChars("hello"));
+console.log(countChars("devex"));
+
+
+/**
+Shunday function yozing, uni string parametri bo'lsin.
+Va bu function stringdagi har bir harfni o'zi bilan
+necha marotaba taktorlanganligini ko'rsatuvchi object qaytarsin.
+  
+MASALAN: countChars("hello") return {h: 1, e: 1, l: 2, o: 1}
+
+Yuqoridagi misolda, 'hello' so'zi tarkibida
+qatnashgan harflar necha marotaba takrorlangini bilan
+object sifatida qaytarilmoqda.
+
+*/
+
 
 //task U
 function sumOdds(num: number): number {
