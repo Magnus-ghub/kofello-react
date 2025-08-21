@@ -43,7 +43,6 @@ export default function Footer() {
                   <Link to="/products">Products</Link>
                   {authMember && <Link to="/orders">Orders</Link>}
                   <Link to="/help">Help</Link>
-                  <Link to="/shopping">Shop</Link>
                 </Box>
               </Box>
             </Stack>

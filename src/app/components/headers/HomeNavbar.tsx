@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 import Basket from "./Basket";
 
 export default function HomeNavbar() {
-    const authMember = true;
+    const authMember = false;
 
     return ( 
       <div className="home-navbar">
@@ -36,9 +36,6 @@ export default function HomeNavbar() {
                         </Box>
                         <Box  className={"hover-line"}>
                             <NavLink to="/help" activeClassName={"underline"}>Help</NavLink>
-                        </Box>
-                        <Box  className={"hover-line"}>
-                            <NavLink to="/shopping" activeClassName={"underline"}>Market</NavLink>
                         </Box>
                         <Basket />
 
