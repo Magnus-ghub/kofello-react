@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Box, Button, Container, Stack, Typography } from "@mui/material";
 import { Link, Route, Switch, useLocation } from "react-router-dom";
 import  HomePage  from "./screens/homePage";
@@ -13,18 +13,40 @@ import "../css/navbar.css";
 import "../css/footer.css";
 import  HelpPage  from "./screens/helpPage";
 import Test from "./screens/Test";
+import { CartItem } from "../lib/types/search";
+import useBasket from "./hooks/useBasket";
 
 function App() {
   const location = useLocation();
-  console.log("location:", location);
 
-
+  const {cartItems, onAdd, onRemove, onDelete, onDeleteAll} = useBasket();
+  
+  
   return (
     <>   
-        {location.pathname === "/" ? <HomeNavbar /> : <OtherNavbar />}
+        {location.pathname === "/" ? (
+          <HomeNavbar
+           cartItems={cartItems}
+           onAdd={onAdd}
+           onRemove={onRemove}
+           onDelete={onDelete}
+           onDeleteAll={onDeleteAll}
+
+           
+
+           /> 
+        ): (
+        <OtherNavbar
+         cartItems={cartItems}
+         onAdd={onAdd}
+         onRemove={onRemove}
+         onDelete={onDelete}
+         onDeleteAll={onDeleteAll}
+          />
+        )}
         <Switch>
           <Route path="/products">
-            <ProductsPage />
+            <ProductsPage onAdd={onAdd} />
           </Route>
           <Route path="/orders">
             <OrdersPage />
