@@ -24,6 +24,7 @@ function App() {
   const [loginOpen, setLoginOpen] = useState<boolean>(false);
   
   
+  
 /** HANDLERS **/
 
   const handleSignupClose = () => setSignupOpen(false);
@@ -38,6 +39,8 @@ function App() {
            onRemove={onRemove}
            onDelete={onDelete}
            onDeleteAll={onDeleteAll}
+           setSignupOpen={setSignupOpen}
+           setLoginOpen={setLoginOpen}
 
            
 
@@ -49,6 +52,9 @@ function App() {
          onRemove={onRemove}
          onDelete={onDelete}
          onDeleteAll={onDeleteAll}
+         setSignupOpen={setSignupOpen}
+         setLoginOpen={setLoginOpen}
+         
           />
         )}
         <Switch>

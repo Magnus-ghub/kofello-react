@@ -11,28 +11,25 @@ interface HomeNavbarProps {
     onRemove: (item: CartItem) => void;
     onDelete: (item: CartItem) => void;
     onDeleteAll: () => void;
+    setSignupOpen: (isOpen: boolean) => void;
+    setLoginOpen: (isOpen: boolean) => void;
 }
 
 export default function HomeNavbar(props: HomeNavbarProps) {
-    const { cartItems, onAdd, onDelete, onRemove, onDeleteAll } = props;
+    const {
+         cartItems,
+         onAdd, 
+         onDelete, 
+         onRemove, 
+         onDeleteAll, 
+         setSignupOpen,
+         setLoginOpen,
+         } = props;
     const authMember = null;
-    const [count, setCount] = useState(0);
-    const [value, setValue] = useState<boolean>(true);
-
-    useEffect(() => {
-        console.log("componentWillUnmount");   // DATA FETCH
-        setCount(count + 1);
-
-        return () => {
-            console.log("componentWillUnmount");
-        };
-    }, [value])
-
+    
     /** HANDLERS */
 
-    const buttonHandler = () => {
-        setCount(count + 1)
-    };
+
 
     return ( 
       <div className="home-navbar">
@@ -77,7 +74,11 @@ export default function HomeNavbar(props: HomeNavbarProps) {
 
                         {!authMember ? (
                             <Box>
-                                <Button variant="contained" className="login-button">
+                                <Button
+                                 variant="contained" 
+                                 className="login-button"
+                                 onClick={() => setLoginOpen(true)}
+                                 >
                                     Login
                                 </Button>
                             </Box>
@@ -98,12 +99,13 @@ export default function HomeNavbar(props: HomeNavbarProps) {
                     <Box className={"wel-txt"}>
                         The choise, not just a choise
                     </Box>
-                    <Box className={"service-txt"}>{count} hours service</Box>
+                    <Box className={"service-txt"}>24 hours service</Box>
                     <Box className={"signup"}>
                         {!authMember ? (
                             <Button 
                                 variant={"contained"} className={"signup-button"} 
-                                onClick={buttonHandler}>
+                                onClick={() => setSignupOpen(true)}
+                                >
                                 SIGN UP
                             </Button>
                         ) : null}
