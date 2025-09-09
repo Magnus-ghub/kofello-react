@@ -42,14 +42,20 @@ export default function UserPage() {
                     className={"order-user-avatar"}
                   />
                   <div className={"order-user-icon-box"}>
-                    <img src={authMember?.memberType === MemberType.RESTAURANT
+                    <img src={
+                      authMember?.memberType === MemberType.RESTAURANT
                        ? "/icons/restaurant.svg" 
-                       : "/icons/user-badge.svg"}
+                       : "/icons/user-badge.svg"
+                      }
                     />
                   </div>
                 </div>
-                <span className={"order-user-name"}>{authMember?.memberNick}</span>
-                <span className={"order-user-prof"}>{authMember?.memberType}</span>
+                <span className={"order-user-name"}>
+                  {authMember?.memberNick}
+                </span>
+                <span className={"order-user-prof"}>
+                  {authMember?.memberType}
+                </span>
                 <span className={"order-user-prof"}>
                   {authMember?.memberAddress
                    ? authMember.memberAddress 

@@ -16,6 +16,8 @@ import OrderService from "../../services/OrderService";
 import { useGlobals } from "../../hooks/useGlobals";
 import "../../../css/order.css";
 import { useHistory } from "react-router-dom";
+import { serverApi } from "../../../lib/config";
+import { MemberType } from "../../../lib/enums/member.enum";
 
 /** REDUX SLICE & SELECTOR **/
 const actionDispatch = (dispatch: Dispatch) => ({
@@ -94,18 +96,29 @@ export default function OrdersPage() {
             <Box className={"member-box"}>
               <div className={"order-user-image"}>
                 <img 
-                  src={"/img/justin.webp"} 
+                  src={
+                    authMember?.memberImage
+                       ? `${serverApi}/${authMember.memberImage}` 
+                       : "/icons/default-user.svg"
+                      } 
                   className={"order-user-avatar"}
                 />
                 <div className={"order-user-icon-box"}>
                   <img
-                     src={"/icons/default-user.svg"} 
+                     src={authMember?.memberType === MemberType.RESTAURANT
+                            ? "/icons/restaurant.svg" 
+                            : "/icons/user-badge.svg"
+                          } 
                      className={"order-user-prof-img"}
                   />
                 </div>
               </div>
-              <span className={"order-user-name"}>Martin</span>
-              <span className={"order-user-prof"}>User</span>
+              <span className={"order-user-name"}>
+                {authMember?.memberNick}
+              </span>
+              <span className={"order-user-prof"}>
+                {authMember?.memberType}
+              </span>
             </Box>
             <Box className={"liner"}></Box>
             <Box className={"order-user-address"}>
@@ -113,7 +126,9 @@ export default function OrdersPage() {
                 <LocatiionOnIcon />
               </div>
               <div className={"spec-address-text"}>
-               South Korea Pusan
+               {authMember?.memberAddress
+                   ? authMember.memberAddress 
+                   : "Do not exist"}
               </div>
             </Box>
           </Box>
