@@ -36,7 +36,7 @@ export function Settings() {
   };
 
   const memberPhoneHandler = (e: T) => {
-    memberUpdateInput.memberNick = e.target.value;
+    memberUpdateInput.memberPhone = e.target.value;
     setMemberUpdateInput({...memberUpdateInput });
   };
 
