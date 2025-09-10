@@ -5,7 +5,7 @@ import TabPanel  from "@mui/lab/TabPanel";
 import { useSelector } from "react-redux";
 import { createSelector } from "reselect";
 import { Messages, serverApi } from "../../../lib/config";
-import { retrievePausedOrers } from "./selector";
+import { retrievePausedOrders } from "./selector";
 import { Order, OrderItem, OrderUpdateInput } from "../../../lib/types/order";
 import { Product } from "../../../lib/types/product";
 import { T } from "../../../lib/types/common";
@@ -16,7 +16,7 @@ import OrderService from "../../services/OrderService";
 
 /** REDUX SLICE & SELECTOR **/
 const pausedOrdersRetriever = createSelector(
-  retrievePausedOrers,
+  retrievePausedOrders,
   (pausedOrders) => ({ pausedOrders })
 );
 
