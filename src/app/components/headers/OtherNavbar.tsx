@@ -42,7 +42,14 @@ export default function OtherNavbar(props: OtherNavbarProps) {
             <Stack className="menu">
                 <Box>
                     <NavLink to="/">
-                        <img className="brand-logo" src="/icons/burak.svg"/>
+                        <div className="kofello-logo">
+                            <div className="symbol">
+                                <img src="/icons/coffee-beans.svg" alt="Kofello Symbol" />
+                            </div>
+                            <div className="text">
+                                <h1 className="kr">KOFELLO</h1>
+                            </div>
+                      </div>
                     </NavLink>
                 </Box>    
                     <Stack  className="links">
