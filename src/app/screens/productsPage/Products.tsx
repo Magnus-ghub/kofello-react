@@ -104,7 +104,7 @@ const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
                     <Stack className={"avatar-big-box"}>
                         <Stack className={"top-text"}>
                                 <p>Seasonal Drinks & Desserts</p>
-                               <Stack className="single-search-big-box">
+                               {/* <Stack className="single-search-big-box">
                                     <input 
                                     type={"search"}
                                     className={"single-search-input"}
@@ -124,8 +124,68 @@ const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
                                     >
                                         Search
                                     </Button>
-                               </Stack>
+                               </Stack> */}
                         </Stack>
+                    </Stack>
+
+                    <Stack className={"product-category"}>
+                            <div className={"category-main"} >
+                                <Button 
+                                variant={"contained"} 
+                                color={
+                                    productSearch.productCollection === ProductCollection.COFFEE
+                                     ? "primary"
+                                     : "secondary"
+                                }
+                                onClick={() => searchCollectionHandler(ProductCollection.COFFEE)}
+                                >
+                                    Coffee
+                                </Button>
+                                <Button 
+                                variant={"contained"} 
+                                color={
+                                    productSearch.productCollection === ProductCollection.LATTE
+                                     ? "primary"
+                                     : "secondary"
+                                }
+                                onClick={() => searchCollectionHandler(ProductCollection.LATTE)}
+                                >
+                                    Latte
+                                </Button>
+                                <Button 
+                                variant={"contained"} 
+                                color={
+                                    productSearch.productCollection === ProductCollection.TEA
+                                     ? "primary"
+                                     : "secondary"
+                                }
+                                onClick={() => searchCollectionHandler(ProductCollection.TEA)}
+                                >
+                                    Tea
+                                </Button>
+                                <Button 
+                                variant={"contained"} 
+                                color={
+                                    productSearch.productCollection === ProductCollection.ADE_JUICE
+                                     ? "primary"
+                                     : "secondary"
+                                }
+                                onClick={() => searchCollectionHandler(ProductCollection.ADE_JUICE)}
+                                >
+                                    Ade/Juice
+                                </Button>
+                                <Button 
+                                variant={"contained"} 
+                                color={
+                                    productSearch.productCollection === ProductCollection.BAKERY
+                                     ? "primary"
+                                     : "secondary"
+                                }
+                                onClick={() => searchCollectionHandler(ProductCollection.BAKERY)}
+                                >
+                                    Bakery
+                                </Button>
+                            </div>
                     </Stack>
 
                     <Stack className={"dishes-filter-section"}>
@@ -146,65 +206,7 @@ const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
                     </Stack>
 
                     <Stack className={"list-category-section"}>
-                        <Stack className={"product-category"}>
-                            <div className={"category-main"} >
-                                <Button 
-                                variant={"contained"} 
-                                color={
-                                    productSearch.productCollection === ProductCollection.BAKERY
-                                     ? "primary"
-                                     : "secondary"
-                                }
-                                onClick={() => searchCollectionHandler(ProductCollection.BAKERY)}
-                                >
-                                    Bakery
-                                </Button>
-                                <Button 
-                                variant={"contained"} 
-                                color={
-                                    productSearch.productCollection === ProductCollection.ADE_JUICE
-                                     ? "primary"
-                                     : "secondary"
-                                }
-                                onClick={() => searchCollectionHandler(ProductCollection.ADE_JUICE)}
-                                >
-                                    Ade/Juice
-                                </Button>
-                                <Button 
-                                variant={"contained"} 
-                                color={
-                                    productSearch.productCollection === ProductCollection.TEA
-                                     ? "primary"
-                                     : "secondary"
-                                }
-                                onClick={() => searchCollectionHandler(ProductCollection.TEA)}
-                                >
-                                    Tea
-                                </Button>
-                                <Button 
-                                variant={"contained"} 
-                                color={
-                                    productSearch.productCollection === ProductCollection.LATTE
-                                     ? "primary"
-                                     : "secondary"
-                                }
-                                onClick={() => searchCollectionHandler(ProductCollection.LATTE)}
-                                >
-                                    Latte
-                                </Button>
-                                <Button 
-                                variant={"contained"} 
-                                color={
-                                    productSearch.productCollection === ProductCollection.COFFEE
-                                     ? "primary"
-                                     : "secondary"
-                                }
-                                onClick={() => searchCollectionHandler(ProductCollection.COFFEE)}
-                                >
-                                    Coffee
-                                </Button>
-                            </div>
-                        </Stack>
+                        
 
                         <Stack className={"product-wrapper"}>
                             {products.length !== 0 ? (
