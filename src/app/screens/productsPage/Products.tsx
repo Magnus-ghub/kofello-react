@@ -21,6 +21,9 @@ import { serverApi } from "../../../lib/config";
 import { useHistory } from "react-router-dom";
 import { CartItem } from "../../../lib/types/search";
 
+import {  Menu, MenuItem } from "@mui/material";
+
+
 /** REDUX SLICE & SELECTOR **/
 const actionDispatch = (dispatch: Dispatch) => ({
     setProducts: (data: Product[]) => dispatch(setProducts(data)),
@@ -42,7 +45,7 @@ export default function Products(props: ProductsProps) {
         page: 1,
         limit: 8,
         order: "createdAt",
-        productCollection: ProductCollection.DISH,
+        productCollection: ProductCollection.COFFEE,
         search: "",    
     });
 
@@ -91,6 +94,8 @@ const choseDishHandler = (id: string) => {
     history.push(`/products/${id}`);
 }
 
+const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+
 
     return(
         <div className="products">
@@ -98,7 +103,7 @@ const choseDishHandler = (id: string) => {
                 <Stack flexDirection={"column"} alignItems={"center"}>
                     <Stack className={"avatar-big-box"}>
                         <Stack className={"top-text"}>
-                                <p>Burak Restaurant</p>
+                                <p>Seasonal Drinks & Desserts</p>
                                <Stack className="single-search-big-box">
                                     <input 
                                     type={"search"}
@@ -125,42 +130,18 @@ const choseDishHandler = (id: string) => {
 
                     <Stack className={"dishes-filter-section"}>
                         <Stack className={"dishes-filter-box"}>
-                            <Button
-                              variant={"contained"}
-                              color={
-                                    productSearch.order === "createdAt"
-                                     ? "primary"
-                                     : "secondary"
-                                }
-                              className={"order"}
-                              onClick={() => serchOrderHandler("createdAt")}
-                            >
-                                New
+                            <Button onClick={(e) => setAnchorEl(e.currentTarget)}>
+                                Sort By: {productSearch.order}
                             </Button>
-                            <Button
-                              variant={"contained"}
-                              color={
-                                    productSearch.order === "productPrice"
-                                     ? "primary"
-                                     : "secondary"
-                                }
-                              className={"order"}
-                              onClick={() => serchOrderHandler("productPrice")}
+                            <Menu
+                            anchorEl={anchorEl}
+                            open={Boolean(anchorEl)}
+                            onClose={() => setAnchorEl(null)}
                             >
-                                Price
-                            </Button>
-                            <Button
-                              variant={"contained"}
-                              color={
-                                    productSearch.order === "productView"
-                                     ? "primary"
-                                     : "secondary"
-                                }
-                              className={"order"}
-                              onClick={() => serchOrderHandler("productViews")}
-                            >
-                                Views
-                            </Button>
+                            <MenuItem onClick={() => { serchOrderHandler("createdAt"); setAnchorEl(null); }}>New</MenuItem>
+                            <MenuItem onClick={() => { serchOrderHandler("productPrice"); setAnchorEl(null); }}>Price</MenuItem>
+                            <MenuItem onClick={() => { serchOrderHandler("productViews"); setAnchorEl(null); }}>Views</MenuItem>
+                            </Menu>
                         </Stack>
                     </Stack>
 
@@ -170,57 +151,57 @@ const choseDishHandler = (id: string) => {
                                 <Button 
                                 variant={"contained"} 
                                 color={
-                                    productSearch.productCollection === ProductCollection.OTHER
+                                    productSearch.productCollection === ProductCollection.BAKERY
                                      ? "primary"
                                      : "secondary"
                                 }
-                                onClick={() => searchCollectionHandler(ProductCollection.OTHER)}
+                                onClick={() => searchCollectionHandler(ProductCollection.BAKERY)}
                                 >
-                                    Other
+                                    Bakery
                                 </Button>
                                 <Button 
                                 variant={"contained"} 
                                 color={
-                                    productSearch.productCollection === ProductCollection.DESSERT
+                                    productSearch.productCollection === ProductCollection.ADE_JUICE
                                      ? "primary"
                                      : "secondary"
                                 }
-                                onClick={() => searchCollectionHandler(ProductCollection.DESSERT)}
+                                onClick={() => searchCollectionHandler(ProductCollection.ADE_JUICE)}
                                 >
-                                    Dessert
+                                    Ade/Juice
                                 </Button>
                                 <Button 
                                 variant={"contained"} 
                                 color={
-                                    productSearch.productCollection === ProductCollection.DRINK
+                                    productSearch.productCollection === ProductCollection.TEA
                                      ? "primary"
                                      : "secondary"
                                 }
-                                onClick={() => searchCollectionHandler(ProductCollection.DRINK)}
+                                onClick={() => searchCollectionHandler(ProductCollection.TEA)}
                                 >
-                                    Drink
+                                    Tea
                                 </Button>
                                 <Button 
                                 variant={"contained"} 
                                 color={
-                                    productSearch.productCollection === ProductCollection.SALAD
+                                    productSearch.productCollection === ProductCollection.LATTE
                                      ? "primary"
                                      : "secondary"
                                 }
-                                onClick={() => searchCollectionHandler(ProductCollection.SALAD)}
+                                onClick={() => searchCollectionHandler(ProductCollection.LATTE)}
                                 >
-                                    Salad
+                                    Latte
                                 </Button>
                                 <Button 
                                 variant={"contained"} 
                                 color={
-                                    productSearch.productCollection === ProductCollection.DISH
+                                    productSearch.productCollection === ProductCollection.COFFEE
                                      ? "primary"
                                      : "secondary"
                                 }
-                                onClick={() => searchCollectionHandler(ProductCollection.DISH)}
+                                onClick={() => searchCollectionHandler(ProductCollection.COFFEE)}
                                 >
-                                    Dish
+                                    Coffee
                                 </Button>
                             </div>
                         </Stack>
@@ -230,7 +211,7 @@ const choseDishHandler = (id: string) => {
                                 products.map((product: Product) => {
                                     const imagePath = `${serverApi}/${product.productImages[0]}`;
                                     const sizeVolume = 
-                                        product.productCollection === ProductCollection.DRINK 
+                                        product.productCollection === ProductCollection.COFFEE 
                                           ? product.productVolume + " litre " 
                                           : product.productSize + "size ";
                                     return (
