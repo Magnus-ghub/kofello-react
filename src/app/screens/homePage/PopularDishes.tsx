@@ -22,14 +22,16 @@ const popularDishesRetriever = createSelector(
   (popularDishes) => ({ popularDishes })
 );
 
+
 export default function PopularDishes() {
   const { popularDishes } = useSelector(popularDishesRetriever);
+  console.log("Popular Dishes in Redux:", popularDishes);
 
     return (
         <div className="popular-dishes-frame">
             <Container>
                 <Stack className="popular-section">
-                    <Box className="category-title">Popular Dishes</Box>
+                    <Box className="category-title">Top Picks</Box>
                     <Stack className="cards-frame">
                       {popularDishes.length !== 0 ? (
                         popularDishes.map((product: Product) => {

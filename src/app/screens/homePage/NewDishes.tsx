@@ -29,20 +29,20 @@ export default function NewDishes() {
         <div className="new-products-frame">
             <Container>
                 <Stack className={"main"}>
-                    <Box className="category-title">Fresh Menu</Box>
+                    <Box className="category-title">What's New</Box>
                     <Stack className="cards-frame">
                        <CssVarsProvider>
                         {newDishes.length !== 0 ? ( 
                             newDishes.map((product: Product ) => {
                             const imagePath = `${serverApi}/${product.productImages[0]}`;
-                            const sizeVolume = 
-                            product.productCollection === ProductCollection.DRINK 
-                            ? product.productVolume + "l" 
-                            : product.productSize + " SIZE";
+                            // const sizeVolume = 
+                            // product.productCollection === ProductCollection.DRINK 
+                            // ? product.productVolume + "l" 
+                            // : product.productSize + " SIZE";
                             return (
                                 <Card key={product._id} variant="outlined" className={"card"}>
                                     <CardOverflow>
-                                        <div className="product-sale">{sizeVolume}</div>
+                                        {/* <div className="product-sale">{sizeVolume}</div> */}
                                         <AspectRatio ratio="1">
                                             <img src={imagePath} alt="" />
                                         </AspectRatio>
@@ -55,7 +55,7 @@ export default function NewDishes() {
                                                     {product.productName}
                                                 </Typography>
                                                 <Divider width="2" height="24" bg="#d9d9d9"  />
-                                                <Typography className={"price"}>${product.productPrice}</Typography>
+                                                <Typography className={"price"}>₩{product.productPrice}</Typography>
                                             </Stack>
                                             <Stack>
                                                 <Typography className={"views"}>
