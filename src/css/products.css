@@ -54,6 +54,7 @@
 .products-page .products .product-category .category-main {
     width: 100px;
     height: 55px;
+    margin-top: 30px;
     position: absolute;
     display: flex;
     flex-direction: row;

@@ -150,9 +150,8 @@
 }
 
 .home-navbar .navbar-container .header-frame .detail .head-main-txt {
-    @import url('https://fonts.googleapis.com/css2?family=Clicker+Script&display=swap');
     width: 450px;
-    height: 150px;
+    height: 180px;
     font-family: 'Clicker Script', cursive;
     font-size: 150px;
     font-style: normal;

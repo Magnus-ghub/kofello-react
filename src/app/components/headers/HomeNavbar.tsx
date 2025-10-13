@@ -173,11 +173,6 @@ export default function HomeNavbar(props: HomeNavbarProps) {
               Coffee 
             </Box>
             {/* <Box className={"wel-txt"}>The choice, not just a choice</Box> */}
-            {/* <Box className={"service-txt"}>
-                It is best to start your day with a cup of coffee. Discover the <br />
-                best flavours coffee you will ever have. We provide the best <br />
-                for our customers.
-            </Box> */}
             <Box className={"signup"}>
               {!authMember ? (
                 <Button

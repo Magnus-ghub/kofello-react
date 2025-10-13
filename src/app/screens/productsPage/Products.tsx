@@ -212,10 +212,10 @@ const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
                             {products.length !== 0 ? (
                                 products.map((product: Product) => {
                                     const imagePath = `${serverApi}/${product.productImages[0]}`;
-                                    const sizeVolume = 
-                                        product.productCollection === ProductCollection.COFFEE 
-                                          ? product.productVolume + " litre " 
-                                          : product.productSize + "size ";
+                                    // const sizeVolume = 
+                                    //     product.productCollection === ProductCollection.COFFEE 
+                                    //       ? product.productVolume + " litre " 
+                                    //       : product.productSize + "size ";
                                     return (
                                         <Stack 
                                             key={product._id} 
@@ -228,7 +228,7 @@ const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
                                                 backgroundImage: `url(${imagePath})`
                                              }}
                                             >
-                                                <div className={"product-sale"}>{sizeVolume}</div>
+                                                {/* <div className={"product-sale"}>{sizeVolume}</div> */}
                                                 <Button 
                                                     className={"shop-btn"} 
                                                     onClick={(e) => {
