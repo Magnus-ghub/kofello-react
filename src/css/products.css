@@ -42,7 +42,7 @@
 
 .products-page .products .top-text p {
     position: relative;
-    margin-left: 380px;
+    margin-left: 300px;
     font-family: "Dancing Script";
     font-style: normal;
     font-weight: 900;
@@ -69,7 +69,13 @@
 
 .products-page .products .category-main button {
     min-width: auto;
+    position: relative;
     margin-right: 10px;
+    gap: 20px;
+    border: none;
+    padding: .3rem 2rem 0 2rem;
+    font-size: 1.2rem;
+    font-weight: 500;
 }
 
 /** Dishes filter **/
@@ -78,7 +84,6 @@
     margin-top: 40px;
     flex-direction: row;
     justify-content: end;
-   
 }
 
 .products-page .products .dishes-filter-section .dishes-filter-box {
@@ -98,6 +103,7 @@
 .products-page .products .list-category-section {
     display: flex;
     flex-direction: row;
+    margin-top: 70px;
 }
 
 .products-page .products .product-wrapper {

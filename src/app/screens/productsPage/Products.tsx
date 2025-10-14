@@ -22,6 +22,7 @@ import { useHistory } from "react-router-dom";
 import { CartItem } from "../../../lib/types/search";
 
 import {  Menu, MenuItem } from "@mui/material";
+import RedButton from "../../context/RedButton";
 
 
 /** REDUX SLICE & SELECTOR **/
@@ -130,66 +131,51 @@ const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
 
                     <Stack className={"product-category"}>
                             <div className={"category-main"} >
-                                <Button 
-                                variant={"contained"} 
-                                color={
-                                    productSearch.productCollection === ProductCollection.COFFEE
-                                     ? "primary"
-                                     : "secondary"
-                                }
-                                onClick={() => searchCollectionHandler(ProductCollection.COFFEE)}
-                                >
-                                    Coffee
-                                </Button>
-                                <Button 
-                                variant={"contained"} 
-                                color={
-                                    productSearch.productCollection === ProductCollection.LATTE
-                                     ? "primary"
-                                     : "secondary"
-                                }
-                                onClick={() => searchCollectionHandler(ProductCollection.LATTE)}
-                                >
-                                    Latte
-                                </Button>
-                                <Button 
-                                variant={"contained"} 
-                                color={
-                                    productSearch.productCollection === ProductCollection.TEA
-                                     ? "primary"
-                                     : "secondary"
-                                }
-                                onClick={() => searchCollectionHandler(ProductCollection.TEA)}
-                                >
-                                    Tea
-                                </Button>
-                                <Button 
-                                variant={"contained"} 
-                                color={
-                                    productSearch.productCollection === ProductCollection.ADE_JUICE
-                                     ? "primary"
-                                     : "secondary"
-                                }
-                                onClick={() => searchCollectionHandler(ProductCollection.ADE_JUICE)}
-                                >
-                                    Ade/Juice
-                                </Button>
-                                <Button 
-                                variant={"contained"} 
-                                color={
-                                    productSearch.productCollection === ProductCollection.BAKERY
-                                     ? "primary"
-                                     : "secondary"
-                                }
-                                onClick={() => searchCollectionHandler(ProductCollection.BAKERY)}
-                                >
-                                    Bakery
-                                </Button>
+                                <RedButton
+                                   label="Coffee"
+                                   active={productSearch.productCollection === ProductCollection.COFFEE}
+                                   onClick={() => searchCollectionHandler(ProductCollection.COFFEE)}
+                                />
+                                <RedButton
+                                   label="Latte"
+                                   active={productSearch.productCollection === ProductCollection.LATTE}
+                                   onClick={() => searchCollectionHandler(ProductCollection.LATTE)}
+                                />
+                                <RedButton
+                                   label="Tea"
+                                   active={productSearch.productCollection === ProductCollection.TEA}
+                                   onClick={() => searchCollectionHandler(ProductCollection.TEA)}
+                                />
+                                <RedButton
+                                   label="Ade/Juice"
+                                   active={productSearch.productCollection === ProductCollection.ADE_JUICE}
+                                   onClick={() => searchCollectionHandler(ProductCollection.ADE_JUICE)}
+                                />
+                                <RedButton
+                                   label="Smoothie"
+                                   active={productSearch.productCollection === ProductCollection.SMOOTHIE}
+                                   onClick={() => searchCollectionHandler(ProductCollection.SMOOTHIE)}
+                                />
+                                <RedButton
+                                   label="Bottle"
+                                   active={productSearch.productCollection === ProductCollection.BOTTLE}
+                                   onClick={() => searchCollectionHandler(ProductCollection.BOTTLE)}
+                                />
+                                <RedButton
+                                   label="Bakery"
+                                   active={productSearch.productCollection === ProductCollection.BAKERY}
+                                   onClick={() => searchCollectionHandler(ProductCollection.BAKERY)}
+                                />
+                                <RedButton
+                                   label="MD"
+                                   active={productSearch.productCollection === ProductCollection.MD_PICKS}
+                                   onClick={() => searchCollectionHandler(ProductCollection.MD_PICKS)}
+                                />
                             </div>
                     </Stack>
 
                     <Stack className={"dishes-filter-section"}>
-                        <Stack className={"dishes-filter-box"}>
+                        {/* <Stack className={"dishes-filter-box"}>
                             <Button onClick={(e) => setAnchorEl(e.currentTarget)}>
                                 Sort By: {productSearch.order}
                             </Button>
@@ -202,7 +188,7 @@ const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
                             <MenuItem onClick={() => { serchOrderHandler("productPrice"); setAnchorEl(null); }}>Price</MenuItem>
                             <MenuItem onClick={() => { serchOrderHandler("productViews"); setAnchorEl(null); }}>Views</MenuItem>
                             </Menu>
-                        </Stack>
+                        </Stack> */}
                     </Stack>
 
                     <Stack className={"list-category-section"}>
