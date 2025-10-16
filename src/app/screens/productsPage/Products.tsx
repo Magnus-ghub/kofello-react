@@ -23,6 +23,7 @@ import { CartItem } from "../../../lib/types/search";
 
 import {  Menu, MenuItem } from "@mui/material";
 import RedButton from "../../context/RedButton";
+import { FaWonSign } from "react-icons/fa6";
 
 
 /** REDUX SLICE & SELECTOR **/
@@ -105,27 +106,28 @@ const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
                     <Stack className={"avatar-big-box"}>
                         <Stack className={"top-text"}>
                                 <p>Seasonal Drinks & Desserts</p>
-                               {/* <Stack className="single-search-big-box">
-                                    <input 
-                                    type={"search"}
-                                    className={"single-search-input"}
-                                    name={"singleResearch"}
-                                    placeholder={"Type here"}
-                                    value={searchText}
-                                    onChange={(e) => setSearchText(e.target.value)}
-                                    onKeyDown={(e) => {
-                                        if (e.key === "Enter") searchProductHandler();
-                                    }}
-                                    />
-                                    <Button
-                                      className="single-button-search"
-                                      variant="contained"
-                                      endIcon={<SearchIcon />}
-                                      onClick={searchProductHandler}
-                                    >
-                                        Search
-                                    </Button>
-                               </Stack> */}
+                               <Stack className="single-search-big-box">
+                                    <div className="input-with-button">
+                                        <input 
+                                        type="search"
+                                        className="single-search-input"
+                                        name="singleResearch"
+                                        placeholder="Type here"
+                                        value={searchText}
+                                        onChange={(e) => setSearchText(e.target.value)}
+                                        onKeyDown={(e) => {
+                                            if (e.key === "Enter") searchProductHandler();
+                                        }}
+                                        />
+                                        <Button
+                                        className="single-button-search"
+                                        variant="contained"
+                                        onClick={searchProductHandler}
+                                        >
+                                        <SearchIcon />
+                                        </Button>
+                                    </div>
+                                </Stack>
                         </Stack>
                     </Stack>
 
@@ -173,9 +175,8 @@ const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
                                 />
                             </div>
                     </Stack>
-
                     <Stack className={"dishes-filter-section"}>
-                        {/* <Stack className={"dishes-filter-box"}>
+                        <Stack className={"dishes-filter-box"}>
                             <Button onClick={(e) => setAnchorEl(e.currentTarget)}>
                                 Sort By: {productSearch.order}
                             </Button>
@@ -188,20 +189,14 @@ const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
                             <MenuItem onClick={() => { serchOrderHandler("productPrice"); setAnchorEl(null); }}>Price</MenuItem>
                             <MenuItem onClick={() => { serchOrderHandler("productViews"); setAnchorEl(null); }}>Views</MenuItem>
                             </Menu>
-                        </Stack> */}
+                        </Stack>
                     </Stack>
 
                     <Stack className={"list-category-section"}>
-                        
-
                         <Stack className={"product-wrapper"}>
                             {products.length !== 0 ? (
                                 products.map((product: Product) => {
                                     const imagePath = `${serverApi}/${product.productImages[0]}`;
-                                    // const sizeVolume = 
-                                    //     product.productCollection === ProductCollection.COFFEE 
-                                    //       ? product.productVolume + " litre " 
-                                    //       : product.productSize + "size ";
                                     return (
                                         <Stack 
                                             key={product._id} 
@@ -214,7 +209,6 @@ const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
                                                 backgroundImage: `url(${imagePath})`
                                              }}
                                             >
-                                                {/* <div className={"product-sale"}>{sizeVolume}</div> */}
                                                 <Button 
                                                     className={"shop-btn"} 
                                                     onClick={(e) => {
@@ -249,9 +243,8 @@ const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
                                                 <span className={"product-title"}>
                                                     {product.productName}
                                                 </span>
-                                                <div className={"product-desc"}>
-                                                    <MonetizationOnIcon />
-                                                    {product.productPrice}
+                                                <div className={"product-desc"}>                                  
+                                                  {product.productPrice} ₩
                                                 </div>
                                             </Box>
                                         </Stack>
@@ -286,27 +279,6 @@ const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
                     </Stack>
                 </Stack>
             </Container>
-
-       
-            <div className={"brands-logo"}>
-                <Container className={"family-brands"}>
-                    <Box className={"category-title"}>Our family-brands</Box>
-                    <Stack className={"brand-list"}>
-                        <Box className={"review-box"}>
-                            <img src={"/img/gurme.webp"} />
-                        </Box>
-                        <Box className={"review-box"}>
-                            <img src={"/img/sweets.webp"} />
-                        </Box>
-                        <Box className={"review-box"}>
-                            <img src={"/img/seafood.webp"} />
-                        </Box>
-                        <Box className={"review-box"}>
-                            <img src={"/img/doner.webp"} />
-                        </Box>
-                    </Stack>
-                </Container>
-            </div>
 
             <div className={"address"}>
                 <Container>
