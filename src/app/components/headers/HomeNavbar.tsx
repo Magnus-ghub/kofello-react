@@ -184,6 +184,18 @@ export default function HomeNavbar(props: HomeNavbarProps) {
                 </Button>
               ) : null}
             </Box>
+            <Box className={"signup"}>
+              {authMember ? (
+                <NavLink to="/products" activeClassName={"underline"}>
+                <Button
+                  variant={"contained"}
+                  className={"signup-button"}
+                >
+                  ORDER NOW
+                </Button>
+                </NavLink>
+              ) : null}
+            </Box>
           </Stack>
           <Box className={"logo-frame"}>
             <div className={"logo-img"}></div>
