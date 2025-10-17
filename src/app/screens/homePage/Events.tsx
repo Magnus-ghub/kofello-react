@@ -1,9 +1,10 @@
 import { Box, Stack } from "@mui/material";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Navigation, Pagination } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
 import { plans } from "../../../lib/data/plans";
-
-// SwiperCore.use([Autoplay, Navigation, Pagination]);
 
 export default function Events() {
   return (
@@ -18,9 +19,10 @@ export default function Events() {
           slidesPerView={"auto"}
           centeredSlides={true}
           spaceBetween={30}
+          modules={[Autoplay, Navigation, Pagination]} // modulni shu yerga qo‘ydik
           navigation={{
-            nextEl: ".swiper-button-next",
             prevEl: ".swiper-button-prev",
+            nextEl: ".swiper-button-next",
           }}
           pagination={{
             el: ".swiper-pagination",
@@ -31,43 +33,43 @@ export default function Events() {
             disableOnInteraction: true,
           }}
         >
-          {plans.map((value, number) => {
-            return (
-              <SwiperSlide key={number} className={"events-info-frame"}>
-                <div className={"events-img"}>
-                  <img src={value.img} className={"events-img"} />
-                </div>
-                <Box className={"events-desc"}>
-                  <Box className={"events-bott"}>
-                    <Box className={"bott-left"}>
-                      <div className={"event-title-speaker"}>
-                        <strong>{value.title}</strong>
-                        <div className={"event-organizator"}>
-                          <img src={"/icons/speaker.svg"} />
-                          <p className={"spec-text-author"}>{value.author}</p>
-                        </div>
+          {plans.map((value, number) => (
+            <SwiperSlide key={number} className={"events-info-frame"}>
+              <div className={"events-img"}>
+                <img src={value.img} className={"events-img"} />
+              </div>
+              <Box className={"events-desc"}>
+                <Box className={"events-bott"}>
+                  <Box className={"bott-left"}>
+                    <div className={"event-title-speaker"}>
+                      <strong>{value.title}</strong>
+                      <div className={"event-organizator"}>
+                        <img src={"/icons/speaker.svg"} />
+                        <p className={"spec-text-author"}>{value.author}</p>
                       </div>
+                    </div>
 
-                      <p className={"text-desc"}> {value.desc} </p>
+                    <p className={"text-desc"}>{value.desc}</p>
 
-                      <div className={"bott-info"}>
-                        <div className={"bott-info-main"}>
-                          <img src={"/icons/calendar.svg"} />
-                          {value.date}
-                        </div>
-                        <div className={"bott-info-main"}>
-                          <img src={"/icons/location.svg"} />
-                          {value.location}
-                        </div>
+                    <div className={"bott-info"}>
+                      <div className={"bott-info-main"}>
+                        <img src={"/icons/calendar.svg"} />
+                        {value.date}
                       </div>
-                    </Box>
+                      <div className={"bott-info-main"}>
+                        <img src={"/icons/location.svg"} />
+                        {value.location}
+                      </div>
+                    </div>
                   </Box>
                 </Box>
-              </SwiperSlide>
-            );
-          })}
+              </Box>
+            </SwiperSlide>
+          ))}
         </Swiper>
+
         <Box className={"prev-next-frame"}>
+          {/* Prev/Next uchun img elementlari Swiper tomonidan topilishi kerak */}
           <img
             src={"/icons/arrow-right.svg"}
             className={"swiper-button-prev"}
@@ -76,7 +78,7 @@ export default function Events() {
           <img
             src={"/icons/arrow-right.svg"}
             className={"swiper-button-next"}
-            style={{ transform: "rotate(-180deg)" }}
+            style={{ transform: "rotate(180deg)" }}
           />
         </Box>
       </Stack>

@@ -184,7 +184,7 @@
 /** ADVERTISEMENT **/
 .ads-restaurant-frame {
   width: 100%;
-  height: 693px;
+  height: 650px;
 }
 
 .ads-restaurant-frame .swiper-button-prev,
@@ -204,7 +204,7 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  filter: brightness(0.7); /* 🔹 Rasmni ozroq qoraytiradi */
+  /* filter: brightness(0.7);  */
 }
 
 .slide-content h3,

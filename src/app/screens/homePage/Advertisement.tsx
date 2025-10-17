@@ -19,25 +19,19 @@ export default function Advertisement() {
     >
       <SwiperSlide>
         <div className="slide-content">
-          <img src="/img/coffee-night.jpg" alt="Caramel Latte" />
-          <h3>NEW! Caramel Latte</h3>
-          <p>Sweet and creamy perfection — limited this season.</p>
+          <img src="/img/adv-kofello.jpg" alt="Vanilla Cold Brew" />
         </div>
       </SwiperSlide>
 
       <SwiperSlide>
         <div className="slide-content">
-          <img src="/img/coffee-night.jpg" alt="Vanilla Cold Brew" />
-          <h3>NEW! Vanilla Cold Brew</h3>
-          <p>Cool, smooth, and lightly sweet — perfect for autumn days.</p>
+          <img src="/img/fruit-juice.png" alt="Vanilla Cold Brew" />
         </div>
       </SwiperSlide>
 
       <SwiperSlide>
         <div className="slide-content">
-          <img src="/img/coffee-night.jpg" alt="Mocha Blend" />
-          <h3>NEW! Mocha Blend</h3>
-          <p>Rich cocoa flavor with espresso depth — a must-try.</p>
+          <img src="/img/adv-cake.jpg" alt="Mocha Blend" />
         </div>
       </SwiperSlide>
     </Swiper>
