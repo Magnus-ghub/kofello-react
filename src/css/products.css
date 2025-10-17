@@ -112,6 +112,7 @@
     margin-right: 10px;
     gap: 20px;
     border: none;
+    border-radius: 21px;
     padding: .3rem 2rem 0 2rem;
     font-size: 1.2rem;
     font-weight: 500;

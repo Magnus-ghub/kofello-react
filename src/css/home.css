@@ -182,24 +182,48 @@
 }
 
 /** ADVERTISEMENT **/
-
-.homepage .ads-restaurant-frame {
-    width: 100%;
-    height: 693px;
-    display: flex;
-    overflow: hidden;
-    transform: perspective(0px);
-    box-shadow: -3px 0px 20px 14px #34343480;
+.ads-restaurant-frame {
+  width: 100%;
+  height: 693px;
 }
 
-.homepage .ads-restaurant-frame .ads-video {
-    width: 100%;
-    background: #0c0e12;
-    display: flex;
-    box-shadow: 0px -8px 90px rgb(215 215 255);
-    transform: scale(1.5);
-    overflow: hidden;
+.ads-restaurant-frame .swiper-button-prev,
+.ads-restaurant-frame .swiper-button-next {
+  color: #fff; /* 🔹 Tugmalar rangi */
 }
+
+.slide-content {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  color: white;
+}
+
+.slide-content img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.7); /* 🔹 Rasmni ozroq qoraytiradi */
+}
+
+.slide-content h3,
+.slide-content p {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.slide-content h3 {
+  bottom: 120px;
+  font-size: 2rem;
+}
+
+.slide-content p {
+  bottom: 80px;
+  font-size: 1.2rem;
+}
+
 
 /** ACTIVE USERS **/
 
