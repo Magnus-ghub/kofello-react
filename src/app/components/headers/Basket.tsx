@@ -140,7 +140,7 @@ export default function Basket(props: BasketProps) {
                 </div>
                 <img src={imagePath} className={"product-img"} />
                 <span className={"product-name"}>{item.name}</span>
-                <p className={"product-price"}>₩{item.price} x {item.quantity}</p>
+                <p className={"product-price"}>{item.price} x {item.quantity}₩</p>
                 <Box sx={{ minWidth: 120 }}>
                   <div className="col-2">
                     <button onClick={() => onRemove(item)} className="remove">-</button>{" "}
@@ -156,7 +156,7 @@ export default function Basket(props: BasketProps) {
           {cartItems.length !== 0 ?  (
             <Box className={"basket-order"}>
             <span className={"price"}>
-              Total: ₩{totalPrice} ({itemsPrice} + {shippingCost})
+              Total: {totalPrice}₩ ({itemsPrice} + {shippingCost})₩
             </span>
             <Button
              onClick={proceedOrderHandler}
