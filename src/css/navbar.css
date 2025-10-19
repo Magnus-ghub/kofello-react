@@ -206,6 +206,20 @@
     background-color: #F4A261; color: white;
 }
 
+.home-navbar .navbar-container .detail .signup .order-now-button {
+    width: 210px;
+    height: 60px;
+    border-radius: 4px;
+    text-align: center;
+    font-family: Poppins;
+    font-size: 19px;
+    /* font-style: normal; */
+    font-weight: 400;
+    line-height: normal;
+    color: white;
+    background-color: #34252b;
+}
+
 .home-navbar .navbar-container .logo-frame {
     margin-top: 43px;
     width: 690px;

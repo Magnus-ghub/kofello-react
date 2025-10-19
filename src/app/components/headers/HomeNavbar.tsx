@@ -189,7 +189,7 @@ export default function HomeNavbar(props: HomeNavbarProps) {
                 <NavLink to="/products" activeClassName={"underline"}>
                 <Button
                   variant={"contained"}
-                  className={"signup-button"}
+                  className={"order-now-button"}
                 >
                   ORDER NOW
                 </Button>

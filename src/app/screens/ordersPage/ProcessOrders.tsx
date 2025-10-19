@@ -67,10 +67,23 @@ export default function ProcessOrders(props: ProcessOrdersProps) {
                     <Box key={order._id} className={"order-main-box"}>
                         <Box className={"order-box-scroll"}>
                             {order?.orderItems?.map((item: OrderItem) => {
-                                const product: Product = order.productData.filter(
+                                const product: Product | undefined = order.productData.find(
                                     (ele: Product) => item.productId === ele._id
-                                )[0];
-                                const imagePath = `${serverApi}/${product.productImages[0]}`;
+                                );
+
+                                if (!product) {
+                                    return (
+                                        <Box key={item._id} className="order-name-price">
+                                            <p style={{ color: "gray" }}>
+                                                ⚠️ Product not found (ID: {item.productId})
+                                            </p>
+                                        </Box>
+                                    );
+                                }
+
+                                const imagePath = product?.productImages?.[0]
+                                    ? `${serverApi}/${product.productImages[0]}`
+                                    : "/icons/noimage.svg"; // fallback rasm
                                 return (
                                     <Box key={item._id} className={"order-name-price"}>
                                         <img 
