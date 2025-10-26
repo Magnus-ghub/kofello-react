@@ -21,284 +21,337 @@ import { serverApi } from "../../../lib/config";
 import { useHistory } from "react-router-dom";
 import { CartItem } from "../../../lib/types/search";
 
-import {  Menu, MenuItem } from "@mui/material";
+import { Menu, MenuItem } from "@mui/material";
 import RedButton from "../../context/RedButton";
 import { FaWonSign } from "react-icons/fa6";
 
-
 /** REDUX SLICE & SELECTOR **/
 const actionDispatch = (dispatch: Dispatch) => ({
-    setProducts: (data: Product[]) => dispatch(setProducts(data)),
+  setProducts: (data: Product[]) => dispatch(setProducts(data)),
 });
-const productsRetriever = createSelector(
-  retrieveProducts, (products) => ({ 
-    products,
+const productsRetriever = createSelector(retrieveProducts, (products) => ({
+  products,
 }));
 
 interface ProductsProps {
-    onAdd: (item: CartItem) => void;
+  onAdd: (item: CartItem) => void;
 }
 
 export default function Products(props: ProductsProps) {
-    const { onAdd } = props;
-    const { setProducts } = actionDispatch(useDispatch());
-    const { products } = useSelector(productsRetriever);
-    const [productSearch, setProductSearch] = useState<ProductInquiry>({
-        page: 1,
-        limit: 8,
-        order: "createdAt",
-        productCollection: ProductCollection.COFFEE,
-        search: "",    
-    });
+  const { onAdd } = props;
+  const { setProducts } = actionDispatch(useDispatch());
+  const { products } = useSelector(productsRetriever);
+  const [productSearch, setProductSearch] = useState<ProductInquiry>({
+    page: 1,
+    limit: 8,
+    order: "createdAt",
+    productCollection: ProductCollection.COFFEE,
+    search: "",
+  });
 
-const [searchText, setSearchText] = useState<string>(""); 
-const history = useHistory();
+  const [searchText, setSearchText] = useState<string>("");
+  const history = useHistory();
 
-    useEffect(() => {
-        const product = new ProductService();
-        product
-          .getProducts(productSearch)
-          .then((data) => setProducts(data))
-          .catch((err) => console.log(err));
-    }, [productSearch])
+  useEffect(() => {
+    const product = new ProductService();
+    product
+      .getProducts(productSearch)
+      .then((data) => setProducts(data))
+      .catch((err) => console.log(err));
+  }, [productSearch]);
 
-    useEffect(() => {
-        if(searchText === "") {
-            productSearch.search = "";
-            setProductSearch({ ...productSearch});
-        }
-    }, [searchText]);
+  useEffect(() => {
+    if (searchText === "") {
+      productSearch.search = "";
+      setProductSearch({ ...productSearch });
+    }
+  }, [searchText]);
 
-/** HANDLERS **/
-const searchCollectionHandler = (collection: ProductCollection) => {
+  /** HANDLERS **/
+  const searchCollectionHandler = (collection: ProductCollection) => {
     productSearch.page = 1;
     productSearch.productCollection = collection;
-    setProductSearch({ ...productSearch});
-};
+    setProductSearch({ ...productSearch });
+  };
 
-const serchOrderHandler = (order: string) => {
+  const serchOrderHandler = (order: string) => {
     productSearch.page = 1;
     productSearch.order = order;
-    setProductSearch({ ...productSearch});
-}
+    setProductSearch({ ...productSearch });
+  };
 
-const searchProductHandler = () => {
+  const searchProductHandler = () => {
     productSearch.search = searchText;
-    setProductSearch({ ...productSearch});
-};
+    setProductSearch({ ...productSearch });
+  };
 
-const paginationHandler = (e: ChangeEvent<any>, value: number) => {
+  const paginationHandler = (e: ChangeEvent<any>, value: number) => {
     productSearch.page = value;
-    setProductSearch({...productSearch});
-};
+    setProductSearch({ ...productSearch });
+  };
 
-const choseDishHandler = (id: string) => {
+  const choseDishHandler = (id: string) => {
     history.push(`/products/${id}`);
-}
+  };
 
-const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
 
+  return (
+    <div className="products">
+      <Container>
+        <Stack flexDirection={"column"} alignItems={"center"}>
+          <Stack className={"avatar-big-box"}>
+            <Stack className={"top-text"}>
+              <p>Seasonal Drinks & Desserts</p>
+              <Stack className="single-search-big-box">
+                <div className="input-with-button">
+                  <input
+                    type="search"
+                    className="single-search-input"
+                    name="singleResearch"
+                    placeholder="Type here"
+                    value={searchText}
+                    onChange={(e) => setSearchText(e.target.value)}
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter") searchProductHandler();
+                    }}
+                  />
+                  <Button
+                    className="single-button-search"
+                    variant="contained"
+                    onClick={searchProductHandler}
+                  >
+                    <SearchIcon />
+                  </Button>
+                </div>
+              </Stack>
+            </Stack>
+          </Stack>
 
-    return(
-        <div className="products">
-            <Container>
-                <Stack flexDirection={"column"} alignItems={"center"}>
-                    <Stack className={"avatar-big-box"}>
-                        <Stack className={"top-text"}>
-                                <p>Seasonal Drinks & Desserts</p>
-                               <Stack className="single-search-big-box">
-                                    <div className="input-with-button">
-                                        <input 
-                                        type="search"
-                                        className="single-search-input"
-                                        name="singleResearch"
-                                        placeholder="Type here"
-                                        value={searchText}
-                                        onChange={(e) => setSearchText(e.target.value)}
-                                        onKeyDown={(e) => {
-                                            if (e.key === "Enter") searchProductHandler();
-                                        }}
-                                        />
-                                        <Button
-                                        className="single-button-search"
-                                        variant="contained"
-                                        onClick={searchProductHandler}
-                                        >
-                                        <SearchIcon />
-                                        </Button>
-                                    </div>
-                                </Stack>
-                        </Stack>
-                    </Stack>
-
-                    <Stack className={"product-category"}>
-                            <div className={"category-main"} >
-                                <RedButton
-                                   label="Coffee"
-                                   active={productSearch.productCollection === ProductCollection.COFFEE}
-                                   onClick={() => searchCollectionHandler(ProductCollection.COFFEE)}
-                                />
-                                <RedButton
-                                   label="Latte"
-                                   active={productSearch.productCollection === ProductCollection.LATTE}
-                                   onClick={() => searchCollectionHandler(ProductCollection.LATTE)}
-                                />
-                                <RedButton
-                                   label="Tea"
-                                   active={productSearch.productCollection === ProductCollection.TEA}
-                                   onClick={() => searchCollectionHandler(ProductCollection.TEA)}
-                                />
-                                <RedButton
-                                   label="Ade/Juice"
-                                   active={productSearch.productCollection === ProductCollection.ADE_JUICE}
-                                   onClick={() => searchCollectionHandler(ProductCollection.ADE_JUICE)}
-                                />
-                                <RedButton
-                                   label="Smoothie"
-                                   active={productSearch.productCollection === ProductCollection.SMOOTHIE}
-                                   onClick={() => searchCollectionHandler(ProductCollection.SMOOTHIE)}
-                                />
-                                <RedButton
-                                   label="Bottle"
-                                   active={productSearch.productCollection === ProductCollection.BOTTLE}
-                                   onClick={() => searchCollectionHandler(ProductCollection.BOTTLE)}
-                                />
-                                <RedButton
-                                   label="Bakery"
-                                   active={productSearch.productCollection === ProductCollection.BAKERY}
-                                   onClick={() => searchCollectionHandler(ProductCollection.BAKERY)}
-                                />
-                                <RedButton
-                                   label="MD"
-                                   active={productSearch.productCollection === ProductCollection.MD_PICKS}
-                                   onClick={() => searchCollectionHandler(ProductCollection.MD_PICKS)}
-                                />
-                            </div>
-                    </Stack>
-                    <Stack className={"dishes-filter-section"}>
-                        <Stack className={"dishes-filter-box"}>
-                            <Button onClick={(e) => setAnchorEl(e.currentTarget)}>
-                                Sort By: {productSearch.order}
-                            </Button>
-                            <Menu
-                            anchorEl={anchorEl}
-                            open={Boolean(anchorEl)}
-                            onClose={() => setAnchorEl(null)}
-                            >
-                            <MenuItem onClick={() => { serchOrderHandler("createdAt"); setAnchorEl(null); }}>New</MenuItem>
-                            <MenuItem onClick={() => { serchOrderHandler("productPrice"); setAnchorEl(null); }}>Price</MenuItem>
-                            <MenuItem onClick={() => { serchOrderHandler("productViews"); setAnchorEl(null); }}>Views</MenuItem>
-                            </Menu>
-                        </Stack>
-                    </Stack>
-
-                    <Stack className={"list-category-section"}>
-                        <Stack className={"product-wrapper"}>
-                            {products.length !== 0 ? (
-                                products.map((product: Product) => {
-                                    const imagePath = `${serverApi}/${product.productImages[0]}`;
-                                    const sizeVolume = 
-                                        product.productCollection === ProductCollection.BAKERY  ||
-                                        product.productCollection === ProductCollection.MD_PICKS
-                                          ? product.productSize  
-                                          : product.productTemperature ;
-                                    return (
-                                        <Stack 
-                                            key={product._id} 
-                                            className={"product-card"}
-                                            onClick={() => choseDishHandler(product._id)}
-                                        >
-                                            <Stack
-                                             className={"product-img"}
-                                             sx={{
-                                                backgroundImage: `url(${imagePath})`
-                                             }}
-                                            >
-                                                <div className={"product-sale"}>{sizeVolume}</div>
-                                                <Button 
-                                                    className={"shop-btn"} 
-                                                    onClick={(e) => {
-                                                            onAdd({
-                                                                _id: product._id,
-                                                                quantity: 1,
-                                                                name: product.productName,
-                                                                price: product.productPrice,
-                                                                image: product.productImages[0],
-                                                            });
-                                                            e.stopPropagation();
-                                                        }}
-                                                >
-                                                    
-                                                    <img 
-                                                      src={"/icons/shopping-cart.svg"}
-                                                      style={{display: "flex"}}
-                                                    />
-                                                </Button>
-                                                <Button className={"view-btn"} sx={{ right: "36px"}}>
-                                                    <Badge badgeContent={product.productViews} color="secondary">
-                                                        <RemoveRedEyeIcon 
-                                                          sx={{
-                                                            color: product.productViews === 0 ? "gray" : "white",
-                                                        }}
-                                                        />
-                                                    </Badge>
-                                                </Button>
-                                            </Stack>
-                                            <Box className={"product-desc"}>
-                                                <span className={"product-title"}>
-                                                    {product.productName}
-                                                </span>
-                                                <div className={"product-desc"}>                                  
-                                                  {product.productPrice} ₩
-                                                </div>
-                                            </Box>
-                                        </Stack>
-                                    );
-                                })
-                            ) : (
-                                <Box className="no-data"> Products are not aviable!</Box>
-                            )}
-                        </Stack>
-                    </Stack>
-
-                    <Stack className={"pagination-section"}>
-                        <Pagination 
-                          count={
-                            products.length !== 0
-                             ? productSearch.page + 1
-                             : productSearch.page
-                          }
-                          page={productSearch.page}
-                          renderItem={(item) => (
-                            <PaginationItem 
-                              components={{
-                                previous: ArrowBackIcon,
-                                next: ArrowForwardIcon,
-                              }}
-                              {...item}
-                              color={"secondary"}
-                            />
-                          )}
-                          onChange={paginationHandler}
-                        />
-                    </Stack>
-                </Stack>
-            </Container>
-
-            <div className={"address"}>
-                <Container>
-                    <Stack className={"address-area"}>
-                        <Box className={"title"}>Our Address</Box>
-                        <iframe 
-                          style={{marginTop: "60px"}}
-                          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13020.834418553352!2d129.082457!3d35.265169!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3568911565a23c0f%3A0xfb357dd0af17df78!2sNamsan!5e0!3m2!1sen!2skr!4v1690452712345!5m2!1sen!2skr"
-                          width="1320"
-                          height="500"
-                          referrerPolicy="no-referrer-when-downgrade"
-                        ></iframe>
-                    </Stack>
-                </Container>
+          <Stack className={"product-category"}>
+            <div className={"category-main"}>
+              <RedButton
+                label="Coffee"
+                active={
+                  productSearch.productCollection === ProductCollection.COFFEE
+                }
+                onClick={() =>
+                  searchCollectionHandler(ProductCollection.COFFEE)
+                }
+              />
+              <RedButton
+                label="Latte"
+                active={
+                  productSearch.productCollection === ProductCollection.LATTE
+                }
+                onClick={() => searchCollectionHandler(ProductCollection.LATTE)}
+              />
+              <RedButton
+                label="Tea"
+                active={
+                  productSearch.productCollection === ProductCollection.TEA
+                }
+                onClick={() => searchCollectionHandler(ProductCollection.TEA)}
+              />
+              <RedButton
+                label="Ade/Juice"
+                active={
+                  productSearch.productCollection ===
+                  ProductCollection.ADE_JUICE
+                }
+                onClick={() =>
+                  searchCollectionHandler(ProductCollection.ADE_JUICE)
+                }
+              />
+              <RedButton
+                label="Smoothie"
+                active={
+                  productSearch.productCollection === ProductCollection.SMOOTHIE
+                }
+                onClick={() =>
+                  searchCollectionHandler(ProductCollection.SMOOTHIE)
+                }
+              />
+              <RedButton
+                label="Bottle"
+                active={
+                  productSearch.productCollection === ProductCollection.BOTTLE
+                }
+                onClick={() =>
+                  searchCollectionHandler(ProductCollection.BOTTLE)
+                }
+              />
+              <RedButton
+                label="Bakery"
+                active={
+                  productSearch.productCollection === ProductCollection.BAKERY
+                }
+                onClick={() =>
+                  searchCollectionHandler(ProductCollection.BAKERY)
+                }
+              />
+              <RedButton
+                label="MD"
+                active={
+                  productSearch.productCollection === ProductCollection.MD_PICKS
+                }
+                onClick={() =>
+                  searchCollectionHandler(ProductCollection.MD_PICKS)
+                }
+              />
             </div>
-        </div>
-    );
+          </Stack>
+          <Stack className={"dishes-filter-section"}>
+            <Stack className={"dishes-filter-box"}>
+              <Button onClick={(e) => setAnchorEl(e.currentTarget)}>
+                Sort By: {productSearch.order}
+              </Button>
+              <Menu
+                anchorEl={anchorEl}
+                open={Boolean(anchorEl)}
+                onClose={() => setAnchorEl(null)}
+              >
+                <MenuItem
+                  onClick={() => {
+                    serchOrderHandler("createdAt");
+                    setAnchorEl(null);
+                  }}
+                >
+                  New
+                </MenuItem>
+                <MenuItem
+                  onClick={() => {
+                    serchOrderHandler("productPrice");
+                    setAnchorEl(null);
+                  }}
+                >
+                  Price
+                </MenuItem>
+                <MenuItem
+                  onClick={() => {
+                    serchOrderHandler("productViews");
+                    setAnchorEl(null);
+                  }}
+                >
+                  Views
+                </MenuItem>
+              </Menu>
+            </Stack>
+          </Stack>
+
+          <Stack className={"list-category-section"}>
+            <Stack className={"product-wrapper"}>
+              {products.length !== 0 ? (
+                products.map((product: Product) => {
+                  const imagePath = `${serverApi}/${product.productImages[0]}`;
+                  const sizeVolume =
+                    product.productCollection === ProductCollection.BAKERY
+                      ? product.productSize
+                      : product.productCollection === ProductCollection.MD_PICKS
+                      ? undefined
+                      : product.productTemperature;
+                  return (
+                    <Stack
+                      key={product._id}
+                      className={"product-card"}
+                      onClick={() => choseDishHandler(product._id)}
+                    >
+                      <Stack
+                        className={"product-img"}
+                        sx={{
+                          backgroundImage: `url(${imagePath})`,
+                        }}
+                      >
+                        {sizeVolume && (
+                          <div className="product-sale">{sizeVolume}</div>
+                        )}
+                        <Button
+                          className={"shop-btn"}
+                          onClick={(e) => {
+                            onAdd({
+                              _id: product._id,
+                              quantity: 1,
+                              name: product.productName,
+                              price: product.productPrice,
+                              image: product.productImages[0],
+                            });
+                            e.stopPropagation();
+                          }}
+                        >
+                          <img
+                            src={"/icons/shopping-cart.svg"}
+                            style={{ display: "flex" }}
+                          />
+                        </Button>
+                        <Button className={"view-btn"} sx={{ right: "36px" }}>
+                          <Badge
+                            badgeContent={product.productViews}
+                            color="secondary"
+                          >
+                            <RemoveRedEyeIcon
+                              sx={{
+                                color:
+                                  product.productViews === 0 ? "gray" : "white",
+                              }}
+                            />
+                          </Badge>
+                        </Button>
+                      </Stack>
+                      <Box className={"product-desc"}>
+                        <span className={"product-title"}>
+                          {product.productName}
+                        </span>
+                        <div className={"product-desc"}>
+                          {product.productPrice} ₩
+                        </div>
+                      </Box>
+                    </Stack>
+                  );
+                })
+              ) : (
+                <Box className="no-data"> Products are not aviable!</Box>
+              )}
+            </Stack>
+          </Stack>
+
+          <Stack className={"pagination-section"}>
+            <Pagination
+              count={
+                products.length !== 0
+                  ? productSearch.page + 1
+                  : productSearch.page
+              }
+              page={productSearch.page}
+              renderItem={(item) => (
+                <PaginationItem
+                  components={{
+                    previous: ArrowBackIcon,
+                    next: ArrowForwardIcon,
+                  }}
+                  {...item}
+                  color={"secondary"}
+                />
+              )}
+              onChange={paginationHandler}
+            />
+          </Stack>
+        </Stack>
+      </Container>
+
+      <div className={"address"}>
+        <Container>
+          <Stack className={"address-area"}>
+            <Box className={"title"}>Our Address</Box>
+            <iframe
+              style={{ marginTop: "60px" }}
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13020.834418553352!2d129.082457!3d35.265169!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3568911565a23c0f%3A0xfb357dd0af17df78!2sNamsan!5e0!3m2!1sen!2skr!4v1690452712345!5m2!1sen!2skr"
+              width="1320"
+              height="500"
+              referrerPolicy="no-referrer-when-downgrade"
+            ></iframe>
+          </Stack>
+        </Container>
+      </div>
+    </div>
+  );
 }

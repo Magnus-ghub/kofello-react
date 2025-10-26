@@ -113,7 +113,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background: #ff9200;
     box-shadow: 4px 6px 20px rgba(0, 0, 0, 0.1);
     border-radius: 25px;
     font-family: "Poppins";
@@ -121,7 +120,8 @@
     font-weight: 600;
     font-size: 12px;
     line-height: 21px;
-    color: #f8f8ff;
+    background: linear-gradient(135deg, #e0f7fa 0%, #80deea 100%);
+    color: #006064;
 }
 
 .homepage .new-products-frame .product-detail {
@@ -149,7 +149,7 @@
 }
 
 .homepage .new-products-frame .product-detail .price {
-    margin-left: 10px;
+    margin-left: 30px;
     width: 20px;
     font-weight: 500;
 }
@@ -250,10 +250,30 @@
 }
 
 .homepage .cards-frame .card {
+  position: relative;
     min-height: 302.26px;
     min-width: 305px;
     cursor: pointer;
 }
+
+.homepage .cards-frame .card .member-points{
+    position: absolute; 
+    top: 10px;
+    left: 10px;
+    z-index: 10; 
+    margin: 0; 
+    width: 100px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.95);
+    color: #1a1a1a;
+    box-shadow: 4px 6px 20px #0000001a;
+    border-radius: 25px;
+    font-family: "Poppins";
+}
+
 
 .homepage .active-users-frame .product-detail {
     width: auto;

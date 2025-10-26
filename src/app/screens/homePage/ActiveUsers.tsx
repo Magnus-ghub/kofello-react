@@ -34,6 +34,7 @@ export default function ActiveUsers() {
                                         className={"card"}
                                     >
                                     <CardOverflow>
+                                        <div className="member-points">{member.memberPoints} Points</div>
                                         <AspectRatio ratio="1">
                                             <img src={imagePath} alt="" />
                                         </AspectRatio>

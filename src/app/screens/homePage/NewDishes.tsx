@@ -35,14 +35,15 @@ export default function NewDishes() {
                         {newDishes.length !== 0 ? ( 
                             newDishes.map((product: Product ) => {
                             const imagePath = `${serverApi}/${product.productImages[0]}`;
-                            // const sizeVolume = 
-                            // product.productCollection === ProductCollection.DRINK 
-                            // ? product.productVolume + "l" 
-                            // : product.productSize + " SIZE";
+                            const sizeVolume = 
+                                product.productCollection === ProductCollection.BAKERY  ||
+                                product.productCollection === ProductCollection.MD_PICKS
+                                    ? product.productSize  
+                                    : product.productTemperature ;
                             return (
                                 <Card key={product._id} variant="outlined" className={"card"}>
                                     <CardOverflow>
-                                        {/* <div className="product-sale">{sizeVolume}</div> */}
+                                        <div className="product-sale">{sizeVolume}</div>
                                         <AspectRatio ratio="1">
                                             <img src={imagePath} alt="" />
                                         </AspectRatio>
@@ -54,7 +55,7 @@ export default function NewDishes() {
                                                 <Typography className={"title"}>
                                                     {product.productName}
                                                 </Typography>
-                                                <Divider width="2" height="24" bg="#d9d9d9"  />
+                                                {/* <Divider width="2" height="24" bg="#d9d9d9"  /> */}
                                                 <Typography className={"price"}>₩{product.productPrice}</Typography>
                                             </Stack>
                                             <Stack>
