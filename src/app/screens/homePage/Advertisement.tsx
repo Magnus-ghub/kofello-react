@@ -5,13 +5,14 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 
+
 export default function Advertisement() {
   return (
     <Swiper
       modules={[Navigation, Pagination]}
       spaceBetween={0}
-      slidesPerView={1}            // 🔹 faqat 1 ta slide ko‘rsatadi
-      navigation                   // 🔹 “Next” va “Prev” tugmalarini yoqadi
+      slidesPerView={1}            
+      navigation                   
       pagination={{ clickable: true }}
       onSlideChange={() => console.log("slide change")}
       onSwiper={(swiper) => console.log(swiper)}

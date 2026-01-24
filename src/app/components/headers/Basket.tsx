@@ -4,7 +4,7 @@ import IconButton from "@mui/material/IconButton";
 import Badge from "@mui/material/Badge";
 import Menu from "@mui/material/Menu";
 import CancelIcon from "@mui/icons-material/Cancel";
-import DeleteForeverIcon from "@mui/icons-material/DeleteForever"
+import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { useHistory } from "react-router-dom";
 import { CartItem } from "../../../lib/types/search";
@@ -19,12 +19,11 @@ interface BasketProps {
   onRemove: (item: CartItem) => void;
   onDelete: (item: CartItem) => void;
   onDeleteAll: () => void;
-      
 }
 
 export default function Basket(props: BasketProps) {
   const { cartItems, onAdd, onDelete, onRemove, onDeleteAll } = props;
-  const {authMember, setOrderBuilder} = useGlobals();
+  const { authMember, setOrderBuilder } = useGlobals();
   const history = useHistory();
   const itemsPrice: number = cartItems.reduce(
     (a: number, c: CartItem) => a + c.quantity * c.price,
@@ -47,7 +46,7 @@ export default function Basket(props: BasketProps) {
   const proceedOrderHandler = async () => {
     try {
       handleClose();
-      if(!authMember) throw new Error(Messages.error2);
+      if (!authMember) throw new Error(Messages.error2);
 
       const order = new OrderService();
       await order.createOrder(cartItems);
@@ -118,14 +117,12 @@ export default function Basket(props: BasketProps) {
             ) : (
               <Stack flexDirection={"row"}>
                 <div>Cart Products:</div>
-              <DeleteForeverIcon
-               sx={{ml: "5px"}}
-               color={"primary"}
-               onClick={() => onDeleteAll()}
-               
-              />
+                <DeleteForeverIcon
+                  sx={{ ml: "5px" }}
+                  color={"primary"}
+                  onClick={() => onDeleteAll()}
+                />
               </Stack>
-              
             )}
           </Box>
           <Box className={"orders-main-wrapper"}>
@@ -134,37 +131,48 @@ export default function Basket(props: BasketProps) {
                 const imagePath = `${serverApi}/${item.image}`;
                 return (
                   <Box className={"basket-info-box"} key={item._id}>
-                <div className={"cancel-btn"}>
-                  <CancelIcon color={"primary"}
-                   onClick={() => onDelete(item)} />
-                </div>
-                <img src={imagePath} className={"product-img"} />
-                <span className={"product-name"}>{item.name}</span>
-                <p className={"product-price"}>{item.price} x {item.quantity}₩</p>
-                <Box sx={{ minWidth: 120 }}>
-                  <div className="col-2">
-                    <button onClick={() => onRemove(item)} className="remove">-</button>{" "}
-                    <button onClick={() => onAdd(item)} className="add">+</button>
-                  </div>
-                </Box>
-              </Box>
+                    <div className={"cancel-btn"}>
+                      <CancelIcon
+                        color={"primary"}
+                        onClick={() => onDelete(item)}
+                      />
+                    </div>
+                    <img src={imagePath} className={"product-img"} />
+                    <span className={"product-name"}>{item.name}</span>
+                    <p className={"product-price"}>
+                      {item.price} x {item.quantity}₩
+                    </p>
+                    <Box sx={{ minWidth: 120 }}>
+                      <div className="col-2">
+                        <button
+                          onClick={() => onRemove(item)}
+                          className="remove"
+                        >
+                          -
+                        </button>{" "}
+                        <button onClick={() => onAdd(item)} className="add">
+                          +
+                        </button>
+                      </div>
+                    </Box>
+                  </Box>
                 );
               })}
-              
             </Box>
           </Box>
-          {cartItems.length !== 0 ?  (
+          {cartItems.length !== 0 ? (
             <Box className={"basket-order"}>
-            <span className={"price"}>
-              Total: {totalPrice}₩ ({itemsPrice} + {shippingCost})₩
-            </span>
-            <Button
-             onClick={proceedOrderHandler}
-             startIcon={<ShoppingCartIcon />}
-             variant={"contained"}>
-              Order
-            </Button>
-          </Box>
+              <span className={"price"}>
+                Total: {totalPrice}₩ ({itemsPrice} + {shippingCost})₩
+              </span>
+              <Button
+                onClick={proceedOrderHandler}
+                startIcon={<ShoppingCartIcon />}
+                variant={"contained"}
+              >
+                Order
+              </Button>
+            </Box>
           ) : (
             ""
           )}
