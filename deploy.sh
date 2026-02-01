@@ -1,12 +1,19 @@
 #!/bin/bash
 
-# PRODUCTION 
+set -e
+
+# PRODUCTION DEPLOY
 git reset --hard
 git checkout master
 git pull origin master
 
-npm i yarn -g
+npm install -g yarn
 yarn global add serve
-yarn
-yarn run build
-pm2 start "yarn run start:prod" --name=KOFELLO-CLIENT
+
+yarn install
+yarn build
+
+pm2 delete KOFELLO-CLIENT || true
+pm2 start "npx serve -s build -l 3000" --name KOFELLO-CLIENT
+
+pm2 save
