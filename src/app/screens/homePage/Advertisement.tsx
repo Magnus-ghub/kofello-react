@@ -20,19 +20,19 @@ export default function Advertisement() {
     >
       <SwiperSlide>
         <div className="slide-content">
-          <img src="/img/adv-kofello.jpg" alt="Vanilla Cold Brew" />
+          <img src="/img/coffee-banner.jpg" alt="Vanilla Cold Brew" />
         </div>
       </SwiperSlide>
 
       <SwiperSlide>
         <div className="slide-content">
-          <img src="/img/fruit-juice.png" alt="Vanilla Cold Brew" />
+          <img src="/img/banner2.jpg" alt="Vanilla Cold Brew" />
         </div>
       </SwiperSlide>
 
       <SwiperSlide>
         <div className="slide-content">
-          <img src="/img/adv-cake.jpg" alt="Mocha Blend" />
+          <img src="/img/banner3.jpg" alt="Mocha Blend" />
         </div>
       </SwiperSlide>
     </Swiper>

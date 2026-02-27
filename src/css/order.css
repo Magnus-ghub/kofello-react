@@ -26,6 +26,7 @@
     flex-direction: column;
 }
 
+/* ===== ORDER INFO BOX (right panel) ===== */
 .order-page .order-right .order-info-box {
     width: 360px;
     height: auto;
@@ -33,24 +34,27 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    background: #f8f8ff;
-    box-shadow: 15px 14px 4px rgba(207, 205, 205, 0.948), inset -1px 0px 16px 13px rgba(185, 184, 186, 0.924);
+    background: #ffffff;
+    box-shadow:
+        0 4px 24px rgba(45, 80, 22, 0.10),
+        0 1px 6px rgba(45, 80, 22, 0.07);
     border-radius: 16px;
+    border: 1px solid rgba(74, 124, 47, 0.10);
     margin-bottom: 25px;
-}   
+}
 
 .order-page .order-right .order-info-box .member-box {
     display: flex;
     flex-direction: column;
     align-items: center;
-}   
+}
 
 .order-page .order-right .order-info-box .liner {
     width: 100%;
-    border: 1px solid #a1a1a1;
+    border: 1px solid rgba(74, 124, 47, 0.18);
     margin-top: 40px;
     margin-bottom: 8px;
-}   
+}
 
 .order-page .order-info-box .order-user-image {
     position: relative;
@@ -62,7 +66,7 @@
 .order-page .order-info-box .order-user-image .order-user-avatar {
     width: 117px;
     height: 112px;
-    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    filter: drop-shadow(0px 4px 12px rgba(45, 80, 22, 0.25));
     border-radius: 37px;
 }
 
@@ -74,7 +78,7 @@
     top: 81%;
     right: 0;
     display: flex;
-    background: rgba(0, 0, 0, 0.33);
+    background: rgba(45, 80, 22, 0.75);
     border-radius: 37px;
 }
 
@@ -98,7 +102,7 @@
     font-weight: 500;
     font-size: 20px;
     line-height: 36px;
-    color: #a1a1a1;
+    color: #4a7c2f;
 }
 
 .order-page .order-info-box .order-user-address {
@@ -129,7 +133,7 @@
     font-weight: 400;
     font-size: 16px;
     line-height: 22px;
-    border: 0.5px solid #b3a6a6;
+    border: 0.5px solid rgba(74, 124, 47, 0.25);
     letter-spacing: -0.02em;
     color: #434141;
 }
@@ -139,7 +143,6 @@
     flex-direction: row;
     justify-content: space-between;
 }
-
 
 .order-page .order-info-box .card-half-input {
     margin-top: 10px;
@@ -153,7 +156,7 @@
     font-weight: 400;
     font-size: 16px;
     line-height: 22px;
-    border: 0.5px solid #b3a6a6;
+    border: 0.5px solid rgba(74, 124, 47, 0.25);
     letter-spacing: -0.02em;
     color: #434141;
 }
@@ -164,17 +167,17 @@
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-    border-bottom: 1px solid #f8f8ff;
+    border-bottom: 1px solid rgba(74, 124, 47, 0.12);
 }
 
-
+/* ===== ORDER LEFT — TABS ===== */
 .order-page .order-left .order-nav-frame {
     width: 100%;
     height: 60px;
     display: flex;
     flex-direction: row;
     justify-content: center;
-    border-bottom: 1px solid #f8f8ff;
+    border-bottom: 1px solid rgba(74, 124, 47, 0.15);
 }
 
 .order-page .order-left .order-nav-frame .table-list {
@@ -199,16 +202,29 @@
     padding-top: 24px;
 }
 
+/* ===== ORDER CARD (main box) ===== */
 .order-page .order-main-content .order-main-box {
     position: relative;
     width: 100%;
     max-height: 285px;
     margin-bottom: 25px;
-    background: #f8f8ff;
-    box-shadow: -13px 16px 4px rgba(0, 0, 0, 0.25), inset 0px -3px 20px 11px #18177033;
+    background: #ffffff;
+    box-shadow:
+        0 8px 32px rgba(45, 80, 22, 0.12),
+        0 2px 8px rgba(45, 80, 22, 0.08),
+        inset 0 0 0 1px rgba(74, 124, 47, 0.08);
     border-radius: 16px;
+    border: 1px solid rgba(74, 124, 47, 0.10);
+    transition: box-shadow 0.3s ease;
 }
 
+.order-page .order-main-content .order-main-box:hover {
+    box-shadow:
+        0 12px 40px rgba(45, 80, 22, 0.18),
+        0 4px 12px rgba(45, 80, 22, 0.10);
+}
+
+/* ===== SCROLL AREA ===== */
 .order-page .order-main-content .order-main-box .order-box-scroll {
     position: relative;
     overflow: hidden;
@@ -224,12 +240,12 @@
 
 .order-page .order-main-content .order-main-box .order-box-scroll::-webkit-scrollbar {
     width: 7px;
-} 
+}
 
 .order-page .order-main-content .order-main-box .order-box-scroll::-webkit-scrollbar-thumb {
-    background-color: #8989db;
+    background: linear-gradient(180deg, #4a7c2f, #2d5016);
     border-radius: 5px;
-} 
+}
 
 .order-page .order-box-scroll .order-name-price {
     position: relative;
@@ -247,6 +263,7 @@
     width: 50px;
     border-radius: 29px;
     background-size: cover;
+    box-shadow: 0 2px 8px rgba(45, 80, 22, 0.15);
 }
 
 .order-page .order-box-scroll .order-name-price .title-dish {
@@ -282,39 +299,57 @@
     color: #262626;
 }
 
+/* ===== TOTAL PRICE BAR ===== */
 .order-page .order-main-content .order-main-box .total-price-box {
     position: relative;
     width: 100%;
     height: 41px;
-    margin: 7px -5px 7px -5px ;
+    margin: 7px -5px 7px -5px;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-around;
     box-sizing: border-box;
-    border-radius: 5px;
+    border-radius: 0 0 16px 16px;
+    background: rgba(74, 124, 47, 0.04);
+    border-top: 1px solid rgba(74, 124, 47, 0.10);
     overflow: hidden;
 }
 
+/* ===== BUTTONS ===== */
 .order-page .order-main-content .total-price-box .cancel-button {
     border-radius: 10px;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
     max-height: 40px;
 }
 
 .order-page .order-main-content .total-price-box .pay-button {
-    background: #56b74d;
+    background: linear-gradient(135deg, #4a7c2f, #2d5016);
     color: #f8f8ff;
     border-radius: 10px;
     max-height: 40px;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 4px 14px rgba(45, 80, 22, 0.35);
+    transition: all 0.3s ease;
+}
+
+.order-page .order-main-content .total-price-box .pay-button:hover {
+    background: linear-gradient(135deg, #2d5016, #1e3610);
+    box-shadow: 0 6px 20px rgba(45, 80, 22, 0.45);
+    transform: translateY(-1px);
 }
 
 .order-page .order-main-content .total-price-box .verify-button {
-    background: #0288d1;
+    background: linear-gradient(135deg, #4a7c2f, #2d5016);
     color: #f8f8ff;
     border-radius: 10px;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), inset 0px 4px 4px  rgb(0, 0, 0, 0.25);
+    box-shadow: 0 4px 14px rgba(45, 80, 22, 0.35);
+    transition: all 0.3s ease;
+}
+
+.order-page .order-main-content .total-price-box .verify-button:hover {
+    background: linear-gradient(135deg, #2d5016, #1e3610);
+    box-shadow: 0 6px 20px rgba(45, 80, 22, 0.45);
+    transform: translateY(-1px);
 }
 
 .order-page .order-main-content .order-main-box .total-price-box .box-total {
@@ -343,9 +378,5 @@
     font-weight: 500;
     font-size: 14px;
     line-height: 36px;
-    color: #000000;
+    color: #2d5016;
 }
-
-
-
-

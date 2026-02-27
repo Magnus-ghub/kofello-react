@@ -84,7 +84,7 @@ export default function Footer() {
           sx={{ mt: "80px" }}
         ></Stack>
         <Stack className={"copyright-txt"}>
-          © Copyright Devex Global, All rights reserved.
+          © Copyright Univo Global, All rights reserved.
         </Stack>
       </Container>
     </Footers>
